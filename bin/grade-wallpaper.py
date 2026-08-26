@@ -53,8 +53,17 @@ RECIPES = {
         "power": {"amount": 0.055, "inner": 0.14, "outer": 0.80},
         "sharpen": 0.6,
         "blur": 0.0,
-        "target": 0.020,
-        "saturation": 0.30,
+        # Deliberately brighter and punchier than the rest of the set. This
+        # image is the theme's identity, not a texture behind it: graded down
+        # to background level the car simply vanished, and a wallpaper nobody
+        # can see is not carrying anything. The UI still wins because Waybar
+        # is near-opaque and Hyprland's blur darkens what sits behind glass.
+        "target": 0.060,
+        "saturation": 0.38,
+        "vignette": 0.34,
+        "contrast": 1.06,
+        "shadow_lift": 0.11,
+        "ui_band": 0.28,
         # The number plate, and the bright verge behind the front wing.
         "knockdown": [(0.566, 0.606, 0.738, 0.724, 0.72, 11.0)],
         "note": "BMW E30 ALPINA C2 2.7",
@@ -67,8 +76,10 @@ RECIPES = {
         # it is a sliver along one edge of a dark metallic panel.
         "crop": (0.34, 0.03, 1.00, 0.80),
         "blur": 0.0,
-        "target": 0.016,
-        "saturation": 0.26,
+        "target": 0.034,
+        "saturation": 0.32,
+        "vignette": 0.46,
+        "contrast": 0.98,
         "note": "ALPINA B7 tail light, IAA 2017",
     },
     "alpina-gims-2018-le-grand-saconnex-1x7a1256": {
@@ -76,9 +87,11 @@ RECIPES = {
         # Crops out the orange car on the left and most of the show-stand
         # crowd along the top; what is left is the car and the dark stand.
         "crop": (0.14, 0.06, 0.845, 0.955),
-        "blur": 2.6,
-        "target": 0.013,
-        "saturation": 0.28,
+        "blur": 2.0,
+        "target": 0.028,
+        "saturation": 0.34,
+        "vignette": 0.46,
+        "contrast": 0.98,
         "note": "ALPINA B5 Bi-Turbo Touring, Geneva 2018",
     },
 }
@@ -222,7 +235,20 @@ def grade(
     focus: tuple[float, float] = (0.5, 0.5),
     sharpen: float = 0.0,
     knockdown: list[tuple[float, float, float, float, float, float]] | None = None,
+    vignette: float = 0.62,
+    contrast: float = 0.90,
+    shadow_lift: float = 0.18,
+    ui_band: float = 0.45,
 ) -> Image.Image:
+    """
+    Grade a photograph into a background.
+
+    The four strength knobs are exposed rather than baked in because the right
+    answer differs per image. A busy show-floor shot needs to be pushed right
+    down before it stops competing with the UI; a hero shot that is carrying
+    the theme's identity needs the opposite, or the subject disappears and
+    there is no reason for the photograph to be there at all.
+    """
     if blur > 0:
         im = im.filter(ImageFilter.GaussianBlur(blur))
     if knockdown:
@@ -249,13 +275,13 @@ def grade(
     # 3. Lift the shadows toward deep ALPINA blue, weighted to the darkest
     #    parts, so black areas become blue-black rather than dead black.
     shadow = (1.0 - np.clip(luma / 0.18, 0.0, 1.0)) ** 2
-    img += shadow * to_linear(np.array(p.rgb(p.ALPINA)) / 255.0)[None, None, :] * 0.18
+    img += shadow * to_linear(np.array(p.rgb(p.ALPINA)) / 255.0)[None, None, :] * shadow_lift
 
     # 4. Pull contrast back around the midpoint. A background should not have
     #    the punch of a photograph — but overdoing this together with the
     #    shadow lift turns the frame milky, which looks cheap rather than calm.
     pivot = img.mean()
-    img = pivot + (img - pivot) * 0.90
+    img = pivot + (img - pivot) * contrast
 
     # 5. Set the exposure by measurement, not by eye.
     mean = img.mean()
@@ -279,11 +305,11 @@ def grade(
     # 6. Vignette about the subject rather than the frame, so the fall-off
     #    pushes everything that is not the car into the dark.
     d = radial_distance((h, w), focus) / 1.05
-    img *= (1.0 - 0.62 * smoothstep(0.22, 1.0, d))[..., None]
+    img *= (1.0 - vignette * smoothstep(0.22, 1.0, d))[..., None]
 
     # 7. Settle the strip Waybar lives on.
     yy = np.linspace(0, 1, h)[:, None]
-    img *= (1.0 - 0.45 * (1.0 - smoothstep(0.0, 0.06, yy)))[..., None]
+    img *= (1.0 - ui_band * (1.0 - smoothstep(0.0, 0.06, yy)))[..., None]
 
     return encode(img)
 
@@ -347,6 +373,10 @@ def main() -> None:
             im, r["blur"], r["target"], r["saturation"],
             focus=focus, sharpen=r.get("sharpen", 0.0),
             knockdown=r.get("knockdown"),
+            vignette=r.get("vignette", 0.62),
+            contrast=r.get("contrast", 0.90),
+            shadow_lift=r.get("shadow_lift", 0.18),
+            ui_band=r.get("ui_band", 0.45),
         ).save(dest, quality=93, subsampling=0, optimize=True, progressive=True)
         report(dest)
 

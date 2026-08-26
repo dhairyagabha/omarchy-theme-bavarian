@@ -218,10 +218,19 @@ after grading it was the first thing the eye landed on.
 It is rendered at 1440p rather than 4K. The source is 1240px wide, and
 inventing three times that many pixels only produces mush.
 
-Two constraints are enforced by measurement rather than by eye: mean luminance
-stays low, and nothing bright is allowed to sit where the UI lives — the top
-edge where Waybar runs, or the centre where Walker opens. Both scripts print
-those numbers every time they run.
+Exposure is set by measurement rather than by eye, and both scripts print what
+they produced — mean luminance, plus the brightness of the strip Waybar runs
+along and the area Walker opens into — every time they run.
+
+The set is deliberately not uniform. The six abstracts are textures whose whole
+job is to stay behind the UI, so they sit low. The photographs are the opposite:
+they exist to be *seen*, and the hero most of all. An earlier pass graded them
+all down to the same quiet level, and the result was a car nobody could make
+out — which defeats the point of putting a car there. The grader's strength
+knobs (`vignette`, `contrast`, `shadow_lift`, `ui_band`, `target`) are exposed
+per-recipe for exactly this reason. Waybar is near-opaque and Hyprland's blur
+darkens whatever sits behind glass, so a brighter wallpaper costs nothing in
+legibility.
 
 `02` through `07` are generated procedurally from the theme palette
 (`bin/make-backgrounds.py`) and are original work. `08` and `09` are CC BY-SA 4.0
