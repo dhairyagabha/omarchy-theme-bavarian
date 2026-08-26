@@ -8,30 +8,30 @@ accent = "#2C7FD4"
 # One step brighter than the accent so it is never lost.
 cursor = "#5AA9F0"
 # Body text. Deliberately below alpine white for long sessions.
-foreground = "#D6DDE6"
+foreground = "#D9DDE3"
 # Carbon. The ground almost everything sits on.
-background = "#05070A"
+background = "#08090C"
 # Alpine white on the deep ALPINA blue below.
-selection_foreground = "#E6EAF0"
+selection_foreground = "#E9EBEF"
 # Deep ALPINA blue.
 selection_background = "#0A2E6B"
 
 # Normal ANSI. Restrained: these carry meaning, not decoration.
-color0 = "#12171F"  # black
+color0 = "#171A21"  # black
 color1 = "#D2544A"  # red
 color2 = "#5FA97D"  # green
 color3 = "#D89A4E"  # yellow
 color4 = "#2C7FD4"  # blue
 color5 = "#A67BC9"  # magenta
 color6 = "#4FB8CE"  # cyan
-color7 = "#A9B4C0"  # white
+color7 = "#AEB5BE"  # white
 
 # Bright ANSI. Ambient-light tier — a lift of each hue, never a new one.
-color8 = "#576373"  # bright black
+color8 = "#5B636E"  # bright black
 color9 = "#E06A5F"  # bright red
 color10 = "#7FC79B"  # bright green
 color11 = "#EBBA74"  # bright yellow
 color12 = "#5AA9F0"  # bright blue
 color13 = "#C49BE0"  # bright magenta
 color14 = "#74D4E8"  # bright cyan
-color15 = "#E6EAF0"  # bright white
+color15 = "#E9EBEF"  # bright white

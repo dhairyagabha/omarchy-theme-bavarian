@@ -43,10 +43,18 @@ The overwhelming majority of every surface.
 
 | Token | Hex | Job |
 |---|---|---|
-| `CARBON` | `#05070A` | Deepest ground: terminal, lock screen, launcher base |
-| `GRAPHITE` | `#0A0E14` | Chrome: Waybar, Walker, notification bodies |
-| `SLATE` | `#111721` | Raised surfaces: tooltips, popovers, selected rows |
-| `MACHINED` | `#1B2430` | Hairline dividers, inactive borders — aluminium trim |
+| `CARBON` | `#08090C` | Deepest ground: terminal, lock screen, launcher base |
+| `GRAPHITE` | `#0E1014` | Chrome: Waybar, Walker, notification bodies |
+| `SLATE` | `#161920` | Raised surfaces: tooltips, popovers, selected rows |
+| `MACHINED` | `#232833` | Hairline dividers, inactive borders — aluminium trim |
+
+These are keyed to the hero wallpaper rather than chosen in the abstract.
+Measured across the graded E30 frame, its cast is `#18191D` — cool, but only
+slightly: blue runs about 23% above red. An earlier version of this ramp sat at
+roughly twice that bias and it cost twice. The chrome read bluer than the
+photograph beneath it, and the blue *accent* had to compete with blue-tinted
+greys instead of landing against neutral metal. Neutral structure is what lets
+one accent colour do its job.
 
 ### Level 2 — Content
 
@@ -55,15 +63,15 @@ last.
 
 | Token | Hex | Job |
 |---|---|---|
-| `ALPINE` | `#E6EAF0` | Primary text, highest emphasis |
-| `TEXT` | `#D6DDE6` | Terminal body text |
-| `SILVER` | `#A9B4C0` | Secondary text, modules at rest |
-| `ALUMINIUM` | `#667380` | Muted, disabled, absent |
-| *bright black* | `#576373` | Terminal comments |
+| `ALPINE` | `#E9EBEF` | Primary text, highest emphasis |
+| `TEXT` | `#D9DDE3` | Terminal body text |
+| `SILVER` | `#AEB5BE` | Secondary text, modules at rest |
+| `ALUMINIUM` | `#6C7480` | Muted, disabled, absent |
+| *bright black* | `#5B636E` | Terminal comments |
 
 Terminal body text is deliberately one step below alpine white. Pure white on
-carbon measures about 16:1 — technically excellent and physically tiring across
-a working day. `TEXT` holds ~14.7:1 and leaves `ALPINE` free to mean *emphasis*.
+carbon measures about 17:1 — technically excellent and physically tiring across
+a working day. `TEXT` holds ~14.6:1 and leaves `ALPINE` free to mean *emphasis*.
 
 ### Level 3 — Interaction
 
@@ -123,7 +131,7 @@ that, or the tooling that produced it.
 | `alacritty.toml`, `ghostty.conf`, `kitty.conf` | Terminal palettes |
 | `neovim.lua` | A self-contained colourscheme — no plugin to install |
 | `vscode.json`, `chromium.theme`, `icons.theme` | Editor, browser, icon set |
-| `backgrounds/` | Eight wallpapers — see below |
+| `backgrounds/` | Nine wallpapers — see below |
 
 **Do not edit the generated files by hand.** They all derive from
 `bin/palette.py`, which is the only place a colour is chosen:
@@ -183,37 +191,58 @@ than the Omarchy default so translucent surfaces stay *background*.
 
 ## Wallpapers
 
-Eight backgrounds, all of them dark, all of them designed to sit *under* a UI:
+Nine backgrounds, all of them dark, all of them designed to sit *under* a UI:
 
 | | |
 |---|---|
-| `01-carbon-weave` | Carbon fibre twill, the trim insert on a dashboard |
-| `02-ambient-light` | The cabin light strip at night |
-| `03-midnight-run` | Long exposure, autobahn after dark |
-| `04-instrument-arc` | A gauge sweep with real tick rhythm |
-| `05-bavarian-ridge` | The Alps at last light |
-| `06-machined` | Dark anodised aluminium, brushed |
-| `07-alpina-tail-light` | ALPINA B7 detail, IAA 2017 |
-| `08-alpina-b5-touring` | ALPINA B5 Bi-Turbo Touring, Geneva 2018 |
+| `01-alpina-e30-c2` | **The hero.** E30 ALPINA C2 2.7 on a panning exposure |
+| `02-carbon-weave` | Carbon fibre twill, the trim insert on a dashboard |
+| `03-ambient-light` | The cabin light strip at night |
+| `04-midnight-run` | Long exposure, autobahn after dark |
+| `05-instrument-arc` | A gauge sweep with real tick rhythm |
+| `06-bavarian-ridge` | The Alps at last light |
+| `07-machined` | Dark anodised aluminium, brushed |
+| `08-alpina-tail-light` | ALPINA B7 detail, IAA 2017 |
+| `09-alpina-b5-touring` | ALPINA B5 Bi-Turbo Touring, Geneva 2018 |
+
+The hero sets the theme's tone and the greys are tuned to it. It gets a
+treatment the others do not: the photograph is a pan, so the surroundings are
+already streaked and the car is already sharp, and `power_treatment()` extends
+exactly that — scaling the frame about the car and averaging the stack, then
+blending the subject back sharp through a radial mask. It reads as more of what
+the photograph is doing rather than as a filter laid over it. The number plate
+is blurred and knocked back: it is a real registration, and a retroreflective
+plate is engineered to be the brightest object in any photograph of a car, so
+after grading it was the first thing the eye landed on.
+
+It is rendered at 1440p rather than 4K. The source is 1240px wide, and
+inventing three times that many pixels only produces mush.
 
 Two constraints are enforced by measurement rather than by eye: mean luminance
 stays low, and nothing bright is allowed to sit where the UI lives — the top
 edge where Waybar runs, or the centre where Walker opens. Both scripts print
 those numbers every time they run.
 
-The first six are generated procedurally from the theme palette
-(`bin/make-backgrounds.py`) and are original work. The last two are CC BY-SA 4.0
-photographs from Wikimedia Commons, cropped and graded to match — see
-[`backgrounds/CREDITS.md`](backgrounds/CREDITS.md), which you must keep with
-them.
+`02` through `07` are generated procedurally from the theme palette
+(`bin/make-backgrounds.py`) and are original work. `08` and `09` are CC BY-SA 4.0
+photographs from Wikimedia Commons, cropped and graded to match.
 
-**A note on the photography.** The brief asked for stock imagery of ALPINA cars
-in dark, cinematic settings. Freely-licensed ALPINA photography turns out to be
-almost entirely car-show floors, grass fields and dealer forecourts — bright,
-cluttered, and shot to sell a car rather than to sit behind a terminal. Two
-images survived that filter. Rather than pad the set with heavily-cropped
-snapshots, the theme leads with abstract work that hits the same brief and
-ships the grading tool so you can add your own licensed photography:
+**Licensing — read before publishing.** The three photographs are not covered by
+this repository's MIT licence, and one of them is unresolved. `08` and `09` are
+copyleft: attribution and ShareAlike both apply. `01`, the hero, was supplied by
+the repository owner and **its copyright status has not been established** — it
+has the look of commissioned motoring-press photography, and grading an image
+does not create a right to it. Settle that, or swap it out, before this repo
+goes public. [`backgrounds/CREDITS.md`](backgrounds/CREDITS.md) has the detail
+and the options; the theme is built to survive losing the hero.
+
+**A note on sourcing.** Freely-licensed BMW and ALPINA photography turns out to
+be almost entirely car-show floors, grass fields and dealer forecourts — bright,
+cluttered, and shot to sell a car rather than to sit behind a terminal.
+`bin/rank-photos.py` exists because of that: it scores candidates on blowout,
+green cast, bright skyline, border clutter and saturation, so the rejects can be
+thrown out arithmetically instead of by eye. Very few survive. Bring your own
+photograph and run it through the same grade:
 
 ```bash
 python3 bin/grade-wallpaper.py ~/Pictures/alpina.jpg --out backgrounds/
@@ -242,7 +271,7 @@ It checks four things:
 - **Structural separation.** Dividers stay visible against their surface.
 
 One warning is expected and deliberate: under protanopia, ambient cyan and
-neutral silver converge (ΔE 9.3). That is why **no state in this theme is
+neutral silver converge (ΔE 10.9). That is why **no state in this theme is
 carried by hue alone.** The active workspace has an underline as well as the
 accent. Battery, network and bluetooth all change glyph. Notifications change
 border weight and timeout with urgency. Colour is the last signal, never the
@@ -250,9 +279,9 @@ only one.
 
 ```
 $ python3 bin/validate-contrast.py
-  [PASS] terminal foreground on carbon             14.74:1  (min 7.0:1)
-  [PASS] bavarian blue on graphite                  4.69:1  (min 4.5:1)
-  [PASS] motorsport red on graphite (critical)      4.70:1  (min 4.5:1)
+  [PASS] terminal foreground on carbon             14.60:1  (min 7.0:1)
+  [PASS] bavarian blue on graphite                  4.62:1  (min 4.5:1)
+  [PASS] motorsport red on graphite (critical)      4.63:1  (min 4.5:1)
   ...
   All contrast and separation checks passed.
 ```
@@ -268,6 +297,7 @@ $ python3 bin/validate-contrast.py
 | `bin/validate-contrast.py` | Contrast, restraint and colour-blindness gate |
 | `bin/make-backgrounds.py` | Renders the six abstract wallpapers |
 | `bin/fetch-wallpapers.py` | Pulls freely-licensed photography from Commons |
+| `bin/rank-photos.py` | Scores candidates on how well they work as a background |
 | `bin/grade-wallpaper.py` | Applies the cinematic grade to a photograph |
 | `bin/make-preview.py` | Renders `preview.png` |
 

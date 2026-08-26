@@ -171,7 +171,7 @@ def carbon_weave() -> None:
     img += field(p.BAVARIAN, 0.055 * radial(0.86, 0.92, 1.05, 2.2) * weave)
     img += field(p.CARBON, np.full((H, W), 0.30))
 
-    finish(img, "01-carbon-weave.jpg", ceiling=0.055)
+    finish(img, "02-carbon-weave.jpg", ceiling=0.055)
 
 
 # ---------------------------------------------------------------------------
@@ -196,7 +196,7 @@ def ambient_light() -> None:
     # Fine grain keeps large flat areas from looking synthetic.
     img *= (0.97 + 0.06 * value_noise(6, 4, 3))[..., None]
 
-    finish(img, "02-ambient-light.jpg", ceiling=0.055)
+    finish(img, "03-ambient-light.jpg", ceiling=0.055)
 
 
 # ---------------------------------------------------------------------------
@@ -233,7 +233,7 @@ def midnight_run() -> None:
     img += field(p.GRAPHITE, 0.18 * road)
     img += field(p.BAVARIAN, 0.030 * road * (0.4 + 0.6 * value_noise(10, 3, 3)))
 
-    finish(img, "03-midnight-run.jpg", ceiling=0.050)
+    finish(img, "04-midnight-run.jpg", ceiling=0.050)
 
 
 # ---------------------------------------------------------------------------
@@ -304,7 +304,7 @@ def instrument_arc() -> None:
     # Hub glow, so the needle has an origin even though it is off-frame.
     img += field(p.BAVARIAN, 0.045 * radial(cx, cy, 0.38, 2.6))
 
-    finish(img, "04-instrument-arc.jpg", ceiling=0.042)
+    finish(img, "05-instrument-arc.jpg", ceiling=0.042)
 
 
 # ---------------------------------------------------------------------------
@@ -345,7 +345,7 @@ def bavarian_ridge() -> None:
         img *= 1.0 - 0.55 * mask[..., None]  # the ridge occludes what is behind
         img += field(colour, weight * mask)
 
-    finish(img, "05-bavarian-ridge.jpg", ceiling=0.048)
+    finish(img, "06-bavarian-ridge.jpg", ceiling=0.048)
 
 
 # ---------------------------------------------------------------------------
@@ -379,7 +379,7 @@ def machined() -> None:
     img += field(p.BAVARIAN, 0.035 * radial(0.20, 0.86, 1.0, 2.2))
     img += field(p.CARBON, np.full((H, W), 0.42))
 
-    finish(img, "06-machined.jpg", ceiling=0.018)
+    finish(img, "07-machined.jpg", ceiling=0.018)
 
 
 def main() -> None:

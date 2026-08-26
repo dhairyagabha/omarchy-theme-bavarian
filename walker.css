@@ -7,9 +7,9 @@
  * blue selection band, and a machined hairline for the frame. No glow.
  */
 
-@define-color background #0A0E14;
-@define-color base #0A0E14;
-@define-color foreground #E6EAF0;
-@define-color text #E6EAF0;
-@define-color border #1B2430;
+@define-color background #0E1014;
+@define-color base #0E1014;
+@define-color foreground #E9EBEF;
+@define-color text #E9EBEF;
+@define-color border #232833;
 @define-color selected-text #5AA9F0;

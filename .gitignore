@@ -1,5 +1,7 @@
-# Unprocessed photography pulled by bin/fetch-wallpapers.py. These are large
-# originals; only the graded results in backgrounds/ are part of the theme.
+# Working files for bin/fetch-wallpapers.py. Proofs are low-resolution
+# candidates used only for ranking; .raw holds the full-size renders of the
+# ones that made the cut. Only the graded results in backgrounds/ ship.
+backgrounds/.proofs/
 backgrounds/.raw/
 
 __pycache__/

@@ -113,7 +113,7 @@ def waybar(draw: ImageDraw.ImageDraw, base: Image.Image) -> None:
 
 def terminal(base: Image.Image) -> None:
     """The active window. Bavarian blue border, carbon body, real ANSI output."""
-    x0, y0, w, h = 96, 168, 1020, 476
+    x0, y0, w, h = 96, 128, 1020, 432
     win = panel((w, h), p.CARBON, 0.94, p.BAVARIAN)
     d = ImageDraw.Draw(win)
 
@@ -125,15 +125,17 @@ def terminal(base: Image.Image) -> None:
     d.text((20, y), "❯", font=fb, fill=rgba(p.BAVARIAN))
     d.text((44, y), "python3 bin/validate-contrast.py", font=f, fill=rgba(p.TEXT)); y += lh + 10
 
-    for label, value, colour in [
-        ("terminal foreground on carbon", "14.74:1", p.VERDE),
-        ("bavarian blue on graphite", " 4.69:1", p.VERDE),
-        ("motorsport red on graphite", " 4.70:1", p.VERDE),
-        ("aluminium on carbon (muted)", " 4.16:1", p.VERDE),
+    # Measured live from the palette, so the preview can never advertise a
+    # contrast figure the theme no longer has.
+    for label, fg, bg in [
+        ("terminal foreground on carbon", p.TEXT, p.CARBON),
+        ("bavarian blue on graphite", p.BAVARIAN, p.GRAPHITE),
+        ("motorsport red on graphite", p.MOTORSPORT, p.GRAPHITE),
+        ("aluminium on carbon (muted)", p.ALUMINIUM, p.CARBON),
     ]:
-        d.text((20, y), "  [PASS]", font=f, fill=rgba(colour))
+        d.text((20, y), "  [PASS]", font=f, fill=rgba(p.VERDE))
         d.text((110, y), label, font=f, fill=rgba(p.SILVER))
-        d.text((470, y), value, font=f, fill=rgba(p.TEXT))
+        d.text((470, y), f"{p.contrast_ratio(fg, bg):5.2f}:1", font=f, fill=rgba(p.TEXT))
         y += lh
     y += 6
     d.text((20, y), "  [WARN]", font=f, fill=rgba(p.AMBER))
@@ -165,7 +167,7 @@ def terminal(base: Image.Image) -> None:
 
 def telemetry(base: Image.Image) -> None:
     """The inactive window: machined border, and the btop graph gradients."""
-    x0, y0, w, h = 1180, 268, 640, 500
+    x0, y0, w, h = 1180, 196, 640, 430
     win = panel((w, h), p.GRAPHITE, 0.90, p.MACHINED)
     d = ImageDraw.Draw(win)
 
@@ -207,11 +209,11 @@ def telemetry(base: Image.Image) -> None:
     for i in range(w - 60):
         t = i / (w - 60)
         v = (math.sin(t * 9) * 0.28 + math.sin(t * 23 + 1.3) * 0.16 + math.sin(t * 3) * 0.3 + 0.5)
-        pts.append((30 + i, y + 150 - v * 150))
+        pts.append((30 + i, y + 112 - v * 112))
     d.line(pts, fill=rgba(p.AMBIENT), width=2, joint="curve")
-    d.line([(30, y + 150), (w - 30, y + 150)], fill=rgba(p.MACHINED), width=1)
+    d.line([(30, y + 112), (w - 30, y + 112)], fill=rgba(p.MACHINED), width=1)
 
-    y += 178
+    y += 140
     d.text((20, y), "notifications", font=MONO(12), fill=rgba(p.ALUMINIUM))
     y += 22
     for urgency, colour in (("normal", p.BAVARIAN), ("critical", p.MOTORSPORT)):
@@ -224,7 +226,7 @@ def telemetry(base: Image.Image) -> None:
 
 
 def main() -> None:
-    source = ROOT / "backgrounds" / "02-ambient-light.jpg"
+    source = ROOT / "backgrounds" / "01-alpina-e30-c2.jpg"
     if not source.exists():
         print("Run bin/make-backgrounds.py first.", file=sys.stderr)
         sys.exit(1)

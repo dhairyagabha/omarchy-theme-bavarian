@@ -20,23 +20,31 @@ motorsport instrument cluster at night.
 
 # --------------------------------------------------------------------------
 # L1 — Structure. The overwhelming majority of every surface.
+#
+# These are keyed to the hero wallpaper rather than chosen in the abstract.
+# Measured over the graded E30 frame, its cast is #18191D: cool, but only
+# slightly — blue runs about 23% above red. An earlier version of this ramp
+# sat at roughly twice that bias, which had two visible costs. The chrome
+# read bluer than the photograph beneath it, and the blue *accent* had to
+# compete with blue-tinted greys instead of landing against neutral metal.
+# Neutral structure is what lets one accent colour do its job.
 # --------------------------------------------------------------------------
-CARBON = "#05070A"  # deepest ground: terminal, lock screen, launcher base
-GRAPHITE = "#0A0E14"  # primary chrome: waybar, walker, notification bodies
-SLATE = "#111721"  # raised surface: tooltips, popovers, selected rows
-MACHINED = "#1B2430"  # hairline dividers, inactive borders, aluminium trim
+CARBON = "#08090C"  # deepest ground: terminal, lock screen, launcher base
+GRAPHITE = "#0E1014"  # primary chrome: waybar, walker, notification bodies
+SLATE = "#161920"  # raised surface: tooltips, popovers, selected rows
+MACHINED = "#232833"  # hairline dividers, inactive borders, aluminium trim
 
 # --------------------------------------------------------------------------
 # L2 — Content. Alpine white through cool silver to machined grey.
 # --------------------------------------------------------------------------
-ALPINE = "#E6EAF0"  # primary text, highest-emphasis content
-SILVER = "#A9B4C0"  # secondary text, inactive-but-present modules
-ALUMINIUM = "#667380"  # muted text, comments, disabled state
+ALPINE = "#E9EBEF"  # primary text, highest-emphasis content
+SILVER = "#AEB5BE"  # secondary text, inactive-but-present modules
+ALUMINIUM = "#6C7480"  # muted text, comments, disabled state
 
 # Terminal body text sits one notch below ALPINE. Pure alpine white over
 # carbon is ~16:1 — technically excellent, physically tiring across a full
 # working day. This keeps ~12:1 and reserves ALPINE for genuine emphasis.
-TEXT = "#D6DDE6"
+TEXT = "#D9DDE3"
 
 # --------------------------------------------------------------------------
 # L3 — Interaction. Bavarian blue carries focus, selection and active state.
@@ -75,8 +83,8 @@ AMBIENT_LIFT = "#74D4E8"
 #
 #   MACHINED -> ANSI_BRIGHT_BLACK -> ALUMINIUM -> SILVER -> TEXT -> ALPINE
 #
-ANSI_BLACK = "#12171F"
-ANSI_BRIGHT_BLACK = "#576373"
+ANSI_BLACK = "#171A21"
+ANSI_BRIGHT_BLACK = "#5B636E"
 
 # --------------------------------------------------------------------------
 # The 22 values Omarchy requires in colors.toml, in its own vocabulary.

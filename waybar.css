@@ -9,14 +9,14 @@
  * or two accents are lit at once, something is wrong.
  */
 
-@define-color background #0A0E14;
-@define-color foreground #E6EAF0;
+@define-color background #0E1014;
+@define-color foreground #E9EBEF;
 
 /* Semantic aliases — these names are what the rules below actually read. */
-@define-color surface #111721;
-@define-color machined #1B2430;
-@define-color silver #A9B4C0;
-@define-color aluminium #667380;
+@define-color surface #161920;
+@define-color machined #232833;
+@define-color silver #AEB5BE;
+@define-color aluminium #6C7480;
 @define-color accent #2C7FD4;
 @define-color focus #5AA9F0;
 @define-color ambient #4FB8CE;
