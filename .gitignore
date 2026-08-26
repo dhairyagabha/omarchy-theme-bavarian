@@ -1,0 +1,6 @@
+# Unprocessed photography pulled by bin/fetch-wallpapers.py. These are large
+# originals; only the graded results in backgrounds/ are part of the theme.
+backgrounds/.raw/
+
+__pycache__/
+*.pyc
