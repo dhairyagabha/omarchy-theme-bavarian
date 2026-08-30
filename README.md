@@ -210,10 +210,14 @@ treatment the others do not: the photograph is a pan, so the surroundings are
 already streaked and the car is already sharp, and `power_treatment()` extends
 exactly that — scaling the frame about the car and averaging the stack, then
 blending the subject back sharp through a radial mask. It reads as more of what
-the photograph is doing rather than as a filter laid over it. The number plate
-is blurred and knocked back: it is a real registration, and a retroreflective
-plate is engineered to be the brightest object in any photograph of a car, so
-after grading it was the first thing the eye landed on.
+the photograph is doing rather than as a filter laid over it.
+
+The number plate is left alone. An earlier pass blurred it — a plate is
+retroreflective and therefore the brightest object in almost any photograph of
+a car — but obscuring it just left a soft grey smear across the front valance,
+which drew more attention than the plate ever did. It is part of the car and it
+reads as part of the car. `soften_regions()` is still there in the grader for
+images that genuinely need something removed; no shipped recipe uses it.
 
 It is rendered at 1440p rather than 4K. The source is 1240px wide, and
 inventing three times that many pixels only produces mush.

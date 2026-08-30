@@ -64,8 +64,9 @@ RECIPES = {
         "contrast": 1.06,
         "shadow_lift": 0.11,
         "ui_band": 0.28,
-        # The number plate, and the bright verge behind the front wing.
-        "knockdown": [(0.566, 0.606, 0.738, 0.724, 0.72, 11.0)],
+        # No knockdown. The plate is part of the car and reads as part of the
+        # car; obscuring it left a soft grey smear across the front valance,
+        # which drew more attention than the plate ever did.
         "note": "BMW E30 ALPINA C2 2.7",
     },
     "alpina-b7-iaa-2017-frankfurt-1y7a3123": {
@@ -170,11 +171,14 @@ def soften_regions(
     """
     Blur named rectangles before grading.
 
-    Darkening alone cannot retire a number plate: a plate is black characters
-    on a retroreflective ground, so lowering the exposure scales both and the
-    registration stays perfectly legible. Only blur destroys the letterforms.
-    This is a real car and a real registration, so the plate gets blurred and
-    then darkened, which also happens to look like a press car.
+    Available for images that need it; no shipped recipe uses it.
+
+    Exposure alone cannot retire a detail like a number plate: a plate is black
+    characters on a retroreflective ground, so lowering the exposure scales
+    both and it stays perfectly legible. Only blur destroys the letterforms,
+    which is why the two are applied together — blur here, darkening later in
+    grade(). Reach for it when something in a frame genuinely has to go, not
+    for anything that is simply bright.
     """
     blurred_cache: dict[float, Image.Image] = {}
     out = im

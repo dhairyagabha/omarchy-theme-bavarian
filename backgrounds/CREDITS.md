@@ -8,8 +8,8 @@ if you redistribute anything.
 `01-alpina-e30-c2.jpg` — BMW E30 ALPINA C2 2.7
 
 Supplied by the repository owner and processed by `bin/grade-wallpaper.py`
-(panning amplified, desaturated, cooled, darkened, vignetted; the number plate
-is blurred and knocked back so the registration is not readable).
+(panning amplified, desaturated, cooled, graded and vignetted). The car is
+shown as photographed, number plate included.
 
 **Its copyright status has not been established.** The source has the look of
 commissioned motoring-press photography, which is normally all-rights-reserved,
